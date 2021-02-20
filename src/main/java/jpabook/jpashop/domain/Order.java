@@ -15,6 +15,16 @@ public class Order {
     @Column(name = "member_id")
     private Long memberId;
 
+    private Member member;
+
+    public Member getMember() {
+        return member;
+    }
+
+    public void setMember(Member member) {
+        this.member = member;
+    }
+
     private LocalDateTime orderDate;
 
     @Enumerated(EnumType.STRING)
