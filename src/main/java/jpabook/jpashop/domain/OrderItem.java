@@ -4,18 +4,42 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-public class OrderItem {
+public class OrderItem extends BaseEntity{
 
     @Id
     @GeneratedValue
     @Column(name = "order_item_id")
     private Long id;
 
-    @Column(name = "order_id")
-    private Long orderId;
+    //@Column(name = "order_id")
+    //private Long orderId;
 
-    @Column(name = "item_id")
-    private Long itemId;
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order orders) {
+        this.order = orders;
+    }
+
+    //@Column(name = "item_id")
+    //private Long itemId;
+
+    @ManyToOne
+    @JoinColumn(name = "item_id")
+    private Item item;
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
 
     private int orderPrice;
 
@@ -29,7 +53,7 @@ public class OrderItem {
         this.id = id;
     }
 
-    public Long getOrderId() {
+    /*public Long getOrderId() {
         return orderId;
     }
 
@@ -43,7 +67,7 @@ public class OrderItem {
 
     public void setItemId(Long itemId) {
         this.itemId = itemId;
-    }
+    }*/
 
     public int getOrderPrice() {
         return orderPrice;
