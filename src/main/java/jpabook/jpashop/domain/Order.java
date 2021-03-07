@@ -17,15 +17,15 @@ public class Order extends BaseEntity{
     //@Column(name = "member_id")
     //private Long memberId;
 
-    @ManyToOne
-    @JoinColumn(name = "member_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id" )
     private Member member;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY , cascade = CascadeType.ALL)
     @JoinColumn(name = "DELIVERY_ID")
     private Delivery delivery;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order" , cascade = CascadeType.ALL)
     private List<OrderItem> orderitems = new ArrayList<>();
 
     public Member getMember() {
